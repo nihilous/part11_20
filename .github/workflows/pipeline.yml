@@ -25,7 +25,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install dependencies
+      - name: NPM Frontend
+        working-directory: ./ThePhonebook
+        run: npm install
+      - name: NPM Backend
+        working-directory: ./
         run: npm install
       - name: Lint
         run: npm run eslint
