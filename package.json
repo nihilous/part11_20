@@ -1,0 +1,46 @@
+{
+  "name": "phonebook-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf dist && cd ./ThePhonebook/ && npm run build && cp -r dist ../",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs",
+    "eslint": "eslint --fix'./**/*.{js,jsx}'",
+    "test:e2e": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nihilous/part11_20.git"
+  },
+  "author": "YongGun Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nihilous/part11_20/issues"
+  },
+  "homepage": "https://github.com/nihilous/part11_20#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "@flydotio/dockerfile": "^0.5.4",
+    "@playwright/test": "^1.45.1",
+    "@stylistic/eslint-plugin-js": "^1.7.2",
+    "@types/node": "^20.14.10",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.0.0",
+    "nodemon": "^3.1.0"
+  }
+}
