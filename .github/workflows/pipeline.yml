@@ -19,7 +19,7 @@ jobs:
   build_and_test:
     runs-on: ubuntu-20.04
     outputs:
-      SKIP: ${{ env.COMMIT_MESSAGES }}
+      SKIP: ${{ env.SKIP }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
