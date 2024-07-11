@@ -53,7 +53,7 @@ jobs:
     needs: [build_and_test]
     outputs:
       SKIP: ${{ needs.build_and_test.outputs.SKIP }}
-    if: ${{ github.event.pull_request.merged == true && github.event_name == 'push' && needs.build_and_test.outputs.SKIP == false}}
+    if: ${{ github.event_name == 'push'}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -61,6 +61,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: commit messages
+        run: echo ${{needs.build_and_test.outputs.SKIP }}
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy to Fly.io
         run: flyctl deploy --remote-only
@@ -70,7 +72,7 @@ jobs:
   tag_release:
     runs-on: ubuntu-20.04
     needs: [deploy]
-    if: ${{ github.event_name == 'push' && needs.deploy.outputs.SKIP == false }}
+    if: ${{ github.event_name == 'push'}}
     permissions:
       contents: write
     steps:
